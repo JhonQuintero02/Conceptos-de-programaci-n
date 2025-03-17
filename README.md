@@ -12,6 +12,8 @@ public class GenerateInfoFiles {
     private static final int MAX_PRODUCTS = 10;
     private static final int MAX_SALES = 5;
     private static final Random RANDOM = new Random();
+    private static final String[] FIRST_NAMES = {"Carlos", "Ana", "Luis", "María", "Jorge", "Laura", "Pedro", "Sofía", "Fernando", "Elena"};
+    private static final String[] LAST_NAMES = {"Gómez", "Rodríguez", "López", "Fernández", "Pérez", "García", "Martínez", "Sánchez", "Ramírez", "Torres"};
 
     public static void main(String[] args) {
         try {
@@ -28,7 +30,9 @@ public class GenerateInfoFiles {
     public static void createSalesManInfoFile(int salesmanCount) throws IOException {
         try (FileWriter writer = new FileWriter(SELLERS_FILE)) {
             for (int i = 1; i <= salesmanCount; i++) {
-                String line = "CC;" + (1000 + i) + ";Vendedor" + i + ";Apellido" + i;
+                String firstName = FIRST_NAMES[RANDOM.nextInt(FIRST_NAMES.length)];
+                String lastName = LAST_NAMES[RANDOM.nextInt(LAST_NAMES.length)];
+                String line = "CC;" + (1000 + i) + ";" + firstName + ";" + lastName;
                 writer.write(line + "\n");
             }
         }
